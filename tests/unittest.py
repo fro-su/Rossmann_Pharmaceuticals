@@ -74,6 +74,14 @@ class TestDataAnalysisFunctions(unittest.TestCase):
             'Value1': [20, 30, 0]
         }).sort_values('Date2')
         assert_frame_equal(result.reset_index(drop=True), expected)
+    
+    def test_check_numeric_anomalies(self):
+        result = check_numeric_anomalies(self.numeric_df, 'A', lower_bound=0, upper_bound=5)
+        expected = pd.DataFrame({
+            'Column Name': ['A'],
+            'Number of Anomalies': [1]
+        })
+        assert_frame_equal(result.reset_index(drop=True), expected)
 
 if __name__ == '__main__':
     unittest.main()
