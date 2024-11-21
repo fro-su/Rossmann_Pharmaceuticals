@@ -34,6 +34,17 @@ class TestDataAnalysisFunctions(unittest.TestCase):
             'Value2': [100, 200, 300]
         })
 
+
+    def test_check_missing_data(self):
+        result = check_missing_data(self.df)
+        expected = pd.DataFrame({
+            'Column Name': ['A', 'B'],
+            'Missing Values': [1, 1],
+            'Percentage Missing': [25.0, 25.0]
+        })
+        assert_frame_equal(result.reset_index(drop=True), expected)
+    
+
     
 
 if __name__ == '__main__':
