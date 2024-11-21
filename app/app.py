@@ -10,6 +10,7 @@ sys.path.append('../')
 # Create Flask app
 app = Flask(__name__)
 
+
 # Load the serialized model
 model_filename = model_filename = r'C:\Users\Firew Ayele\Desktop\kifiya\Rossmann_Pharmaceuticals\notebooks\rf_model_2024-09-24-10-13-30.pkl'
  
@@ -45,11 +46,11 @@ def predict():
 # Custom 404 handler to ignore favicon errors
 @app.errorhandler(404)
 def page_not_found(e):
+
     # Check if the requested path is 'favicon.ico'
     if 'favicon.ico' in str(e):
         return '', 204  # Return an empty response with status 204 (No Content)
     return jsonify(error="Page not found"), 404  # For other 404 errors
-
 
 # Run the app
 if __name__ == '__main__':
