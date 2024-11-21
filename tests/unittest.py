@@ -56,6 +56,11 @@ class TestDataAnalysisFunctions(unittest.TestCase):
             'Number of Duplicates': [2]
         })
         assert_frame_equal(result.reset_index(drop=True), expected)
+    
+    def test_check_data_types(self):
+        result = check_data_types(self.df)
+        self.assertEqual(result, "Success: Data types per column are uniform.")
+
 
     
 
