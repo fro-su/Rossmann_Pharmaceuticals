@@ -65,6 +65,15 @@ class TestDataAnalysisFunctions(unittest.TestCase):
         result = get_numeric_columns(self.df)
         self.assertEqual(result, ['A', 'B', 'D'])
     
+    def test_merge_and_sort(self):
+        result = merge_and_sort(self.date_df1, self.date_df2, 'Date1', 'Date2', 'Value1')
+        expected = pd.DataFrame({
+            'Date2': pd.to_datetime(['2024-01-02', '2024-01-03', '2024-01-04']),
+            'Value2': [100, 200, 300],
+            'Date1': pd.to_datetime(['2024-01-02', '2024-01-03', None]),
+            'Value1': [20, 30, 0]
+        }).sort_values('Date2')
+        assert_frame_equal(result.reset_index(drop=True), expected)
 
 if __name__ == '__main__':
     unittest.main()
