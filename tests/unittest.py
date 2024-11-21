@@ -61,7 +61,9 @@ class TestDataAnalysisFunctions(unittest.TestCase):
         result = check_data_types(self.df)
         self.assertEqual(result, "Success: Data types per column are uniform.")
 
-
+    def test_get_numeric_columns(self):
+        result = get_numeric_columns(self.df)
+        self.assertEqual(result, ['A', 'B', 'D'])
     
 
 if __name__ == '__main__':
