@@ -45,6 +45,18 @@ class TestDataAnalysisFunctions(unittest.TestCase):
         assert_frame_equal(result.reset_index(drop=True), expected)
     
 
+    def test_get_total_missing_percentage(self):
+        result = get_total_missing_percentage(self.df)
+        self.assertEqual(result, 12.5)
+    
+    def test_check_duplicates(self):
+        result = check_duplicates(self.duplicate_df)
+        expected = pd.DataFrame({
+            'ID': [2],
+            'Number of Duplicates': [2]
+        })
+        assert_frame_equal(result.reset_index(drop=True), expected)
+
     
 
 if __name__ == '__main__':
